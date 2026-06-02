@@ -1,15 +1,9 @@
 # my-setup-fedora
 Post Instalation
 
-# Nombre del Proyecto
+# Automatización de instlación de programas en un equipo nuevo
 
-Breve descripción de lo que hace este proyecto y para qué sirve.
-
-## Requisitos
-
-- Sistema operativo basado en Fedora/RHEL/CentOS (usa `dnf`)
-- Permisos de sudo
-- Conexión a Internet
+Este script sirve para no tener que configurar mis pcs de forma manual cuando vaya a utilizar el SO de Fedora
 
 ## Instalación y Ejecución
 
