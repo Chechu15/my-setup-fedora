@@ -1,33 +1,53 @@
+#!/bin/bash
+
 ### Instalando Mullvad VPN y Mullvad Browser
+
+echo "Paso 1: Instalando Mullvad VPN y Mullvad Browser"
 
 sudo dnf config-manager addrepo --from-repofile=https://repository.mullvad.net/rpm/stable/mullvad.repo
 
 sudo dnf install mullvad-vpn mullvad-browser -y
 
 ### Instalando programas
+echo "Paso 2: Instalando Programas varios"
 
-
-sudo dnf install libreoffice-langpack-es vlc kleopatra keepassxc syncthing git -y
+sudo dnf install libreoffice-langpack-es vlc kleopatra keepassxc syncthing git distrobox -y
 
 
 ## Instalar VSCodium
 
-wget https://github.com/VSCodium/vscodium/releases/download/1.121.03429/codium-1.121.03429-el8.x86_64.rpm
-sudo dnf install -y ./codium-1.121.03429-el8.x86_64.rpm
-rm -f codium-1.121.03429-el8.x86_64.rpm
+##wget https://github.com/VSCodium/vscodium/releases/download/1.121.03429/codium-1.121.03429-el8.x86_64.rpm
+##sudo dnf install -y ./codium-1.121.03429-el8.x86_64.rpm
+##rm -f codium-1.121.03429-el8.x86_64.rpm
+
+## Instalación de VSCodium de manera más eficiente
+echo "Paso 3: Instalando VSCoidum"
+
+sudo rpm --import https://gitlab.com/paulcarroty/vscodium-deb-rpm-repo/raw/master/pub.gpg
+
+sudo dnf config-manager --add-repo https://gitlab.com/paulcarroty/vscodium-deb-rpm-repo/raw/repos/rpms/
+
+sudo dnf install vscodium -y
 
 ### Ir a la pagina web , descargar el archivo rpm , e instalarlo con sudo rpm -i codium*
 
 ####FLatpak
+echo "Paso 4: Añadiendo repositorio de flathub y descargando programas de flathub"
 
 flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
 
 
-flatpak install flathub io.freetubeapp.FreeTube flathub org.localsend.localsend_app com.github.johnfactotum.Foliate -y
-
-flatpak install com.github.tchx84.Flatseal io.gitlab.librewolf-community  org.cryptomator.Cryptomator org.mozilla.firefox -y
+flatpak install flathub io.freetubeapp.FreeTube \
+  org.localsend.localsend_app \
+  com.github.johnfactotum.Foliate \
+  com.github.tchx84.Flatseal \
+  io.gitlab.librewolf-community \
+  org.cryptomator.Cryptomator \
+  org.mozilla.firefox -y
 
 ###Instaladno brave
+
+echo "Paso 5: Descargando Brave"
 
 sudo dnf install dnf-plugins-core
 
@@ -35,8 +55,7 @@ sudo dnf config-manager addrepo --from-repofile=https://brave-browser-rpm-releas
 
 sudo dnf install brave-browser
 
-
-
+echo "Paso 6: Descargando Qemu para virtualización"
 
 #instalacion de qemu
 sudo dnf install @virtualization
@@ -44,32 +63,33 @@ sudo dnf install @virtualization
 ## para soporte EFI en Qemu
 sudo dnf install edk2-ovmf
 
+echo "Paso 7: Creación de reglas para el cortafuegos"
 
 ##regla de firewall-cmd para abrir puerto solamente en la sesion para localsend
 
 #firewall-cmd --zone=public --add-port=53317/tcp
 
-firewall-cmd --permanent --zone=home --add-port=53317/tcp
-
-#### Instalacion de distrobox
-
-sudo dnf install distrobox -y
-
+sudo firewall-cmd --permanent --zone=home --add-port=53317/tcp
 
 #### Instalar paquete de colores en libreoffice (codehighlighter2)
 
-wget https://extensions.libreoffice.org/assets/downloads/508/1735925190/codehighlighter2.oxt
+echo "Paso 8: Descarga de paquete de libreoffice"
 
+wget https://extensions.libreoffice.org/assets/downloads/508/1735925190/codehighlighter2.oxt && mv codehighlighter2.oxt ~
+
+echo "Paso 9: Descarga de codecs propietarios en rpm-fusion"
 
 ### instalaacion de codecs faltantes rpm-fusion
 
 sudo dnf install https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
 
 
-sudo dnf5 swap ffmpeg-free ffmpeg --allowerasing
+sudo dnf5 swap ffmpeg-free ffmpeg --allowerasing || true
 
 
 #### Instalcion de codecss
+
+echo "Paso 10: Descarga de codescs para habilitar la aceleración por hardware"
 
 ##Este controlador es necesario para habilitar la aceleración por hardware (decodificación y codificación) mediante VA-API
 sudo dnf install intel-media-driver libva libva-utils
@@ -77,6 +97,8 @@ sudo dnf install intel-media-driver libva libva-utils
 ###Comprobacion qeu funione automaticamete
 
 vainfo
+
+echo "Paso 11: Limpieza de paquetes"
 
 sudo dnf autoremove -y
 
