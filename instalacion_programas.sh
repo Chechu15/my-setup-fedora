@@ -25,7 +25,7 @@ echo "Paso 3: Instalando VSCoidum"
 
 sudo rpm --import https://gitlab.com/paulcarroty/vscodium-deb-rpm-repo/raw/master/pub.gpg
 
-sudo dnf config-manager --add-repo https://gitlab.com/paulcarroty/vscodium-deb-rpm-repo/raw/repos/rpms/
+sudo dnf config-manager addrepo https://gitlab.com/paulcarroty/vscodium-deb-rpm-repo/raw/repos/rpms/
 
 sudo dnf install vscodium -y
 
@@ -53,15 +53,15 @@ sudo dnf install dnf-plugins-core
 
 sudo dnf config-manager addrepo --from-repofile=https://brave-browser-rpm-release.s3.brave.com/brave-browser.repo
 
-sudo dnf install brave-browser
+sudo dnf install brave-browser -y
 
 echo "Paso 6: Descargando Qemu para virtualización"
 
 #instalacion de qemu
-sudo dnf install @virtualization
+sudo dnf install @virtualization -y
 
 ## para soporte EFI en Qemu
-sudo dnf install edk2-ovmf
+sudo dnf install edk2-ovmf -y
 
 echo "Paso 7: Creación de reglas para el cortafuegos"
 
@@ -81,10 +81,10 @@ echo "Paso 9: Descarga de codecs propietarios en rpm-fusion"
 
 ### instalaacion de codecs faltantes rpm-fusion
 
-sudo dnf install https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
+sudo dnf install https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm -y
 
 
-sudo dnf5 swap ffmpeg-free ffmpeg --allowerasing || true
+sudo dnf5 swap ffmpeg-free ffmpeg --allowerasing  -y || true
 
 
 #### Instalcion de codecss
@@ -92,7 +92,7 @@ sudo dnf5 swap ffmpeg-free ffmpeg --allowerasing || true
 echo "Paso 10: Descarga de codescs para habilitar la aceleración por hardware"
 
 ##Este controlador es necesario para habilitar la aceleración por hardware (decodificación y codificación) mediante VA-API
-sudo dnf install intel-media-driver libva libva-utils
+sudo dnf install intel-media-driver libva libva-utils -y
 
 ###Comprobacion qeu funione automaticamete
 
