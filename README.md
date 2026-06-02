@@ -1,9 +1,9 @@
 # my-setup-fedora
 Post Instalation
 
-# Automatización de instlación de programas en un equipo nuevo
+# Automatización de instalación de programas en un equipo nuevo
 
-Este script sirve para no tener que configurar mis pcs de forma manual cuando vaya a utilizar el SO de Fedora
+Este script sirve para no tener que configurar mis PCs de forma manual cuando vaya a utilizar el SO de Fedora. Puedes cogerlo de ejemplo para que se adapte a tu uso de trabajo.
 
 ## Instalación y Ejecución
 
