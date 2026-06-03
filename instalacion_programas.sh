@@ -83,7 +83,9 @@ sudo firewall-cmd --permanent --zone=home --add-port=53317/tcp
 
 echo "Paso 8: Descarga de paquete de libreoffice"
 
-wget https://extensions.libreoffice.org/assets/downloads/508/1735925190/codehighlighter2.oxt && mv codehighlighter2.oxt /home/$USER/
+user=$(awk -F: '$3 == 1000 {print $1}' /etc/passwd)
+
+wget https://extensions.libreoffice.org/assets/downloads/508/1735925190/codehighlighter2.oxt && mv codehighlighter2.oxt /home/$user/
 
 echo "Paso 9: Descarga de codecs propietarios en rpm-fusion"
 
