@@ -8,7 +8,7 @@ sudo dnf config-manager addrepo --from-repofile=https://repository.mullvad.net/r
 
 sudo dnf install mullvad-vpn mullvad-browser -y
 
-### Instalando programas
+### Instalando programas y desistalando programas que vienen por defecto en kde
 echo "Paso 2: Instalando Programas varios"
 
 sudo dnf install libreoffice-langpack-es vlc kleopatra keepassxc syncthing distrobox htop btop -y
@@ -56,7 +56,7 @@ flatpak install flathub io.freetubeapp.FreeTube \
   org.cryptomator.Cryptomator \
   org.mozilla.firefox -y
 
-###Instaladno brave
+###Instalando brave
 
 echo "Paso 5: Descargando Brave"
 
@@ -81,6 +81,12 @@ echo "Paso 7: Creación de reglas para el cortafuegos"
 #firewall-cmd --zone=public --add-port=53317/tcp
 
 sudo firewall-cmd --permanent --zone=home --add-port=53317/tcp
+
+sudo firewall-cmd --set-default-zone=home
+
+## Aplicar los cambios para reglas permanentes
+
+sudo firewall-cmd --reload
 
 #### Instalar paquete de colores en libreoffice (codehighlighter2)
 
