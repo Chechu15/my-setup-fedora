@@ -11,7 +11,10 @@ sudo dnf install mullvad-vpn mullvad-browser -y
 ### Instalando programas
 echo "Paso 2: Instalando Programas varios"
 
-sudo dnf install libreoffice-langpack-es vlc kleopatra keepassxc syncthing distrobox -y
+sudo dnf install libreoffice-langpack-es vlc kleopatra keepassxc syncthing distrobox htop btop -y
+
+sudo dnf remove kmahjongg kmines kpat firefox -y
+
 
 
 ## Instalar VSCodium
