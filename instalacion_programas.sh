@@ -80,6 +80,10 @@ echo "Paso 7: Creación de reglas para el cortafuegos"
 
 #firewall-cmd --zone=public --add-port=53317/tcp
 
+sudo systemctl enable --now firewalld
+
+sudo systemctl start firewalld
+
 sudo firewall-cmd --permanent --zone=home --add-port=53317/tcp
 
 sudo firewall-cmd --set-default-zone=home
