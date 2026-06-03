@@ -86,11 +86,11 @@ sudo systemctl start firewalld
 
 sudo firewall-cmd --permanent --zone=home --add-port=53317/tcp
 
-sudo firewall-cmd --set-default-zone=home
+firewall-cmd --set-default-zone=public
 
 ## Aplicar los cambios para reglas permanentes
 
-sudo firewall-cmd --reload
+firewall-cmd --reload
 
 #### Instalar paquete de colores en libreoffice (codehighlighter2)
 
@@ -102,7 +102,7 @@ wget https://extensions.libreoffice.org/assets/downloads/508/1735925190/codehigh
 
 echo "Paso 9: Descarga de codecs propietarios en rpm-fusion"
 
-### instalación de codecs faltantes rpm-fusion
+### Instalación de codecs faltantes rpm-fusion para reprodución multimedia
 
 sudo dnf install https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm -y
 
@@ -110,14 +110,14 @@ sudo dnf install https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-releas
 sudo dnf5 swap ffmpeg-free ffmpeg --allowerasing  -y || true
 
 
-#### Instalcion de codecss
+#### Instalación de codecs
 
 echo "Paso 10: Descarga de codescs para habilitar la aceleración por hardware"
 
 ##Este controlador es necesario para habilitar la aceleración por hardware (decodificación y codificación) mediante VA-API
 sudo dnf install intel-media-driver libva libva-utils -y
 
-###Comprobacion qeu funione automaticamete
+###Comprobación que funione automaticamete
 
 vainfo
 
