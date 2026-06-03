@@ -23,11 +23,19 @@ sudo dnf install libreoffice-langpack-es vlc kleopatra keepassxc syncthing git d
 ## Instalación de VSCodium de manera más eficiente
 echo "Paso 3: Instalando VSCoidum"
 
-sudo rpm --import https://gitlab.com/paulcarroty/vscodium-deb-rpm-repo/raw/master/pub.gpg
+sudo tee -a /etc/yum.repos.d/vscodium.repo << 'EOF'
+[gitlab.com_paulcarroty_vscodium_repo]
+name=gitlab.com_paulcarroty_vscodium_repo
+baseurl=https://paulcarroty.gitlab.io/vscodium-deb-rpm-repo/rpms/
+enabled=1
+gpgcheck=1
+repo_gpgcheck=1
+gpgkey=https://gitlab.com/paulcarroty/vscodium-deb-rpm-repo/raw/master/pub.gpg
+metadata_expire=1h
+EOF
 
-sudo dnf config-manager addrepo https://gitlab.com/paulcarroty/vscodium-deb-rpm-repo/raw/repos/rpms/
+sudo dnf install codium -y
 
-sudo dnf install vscodium -y
 
 ### Ir a la pagina web , descargar el archivo rpm , e instalarlo con sudo rpm -i codium*
 
@@ -49,7 +57,7 @@ flatpak install flathub io.freetubeapp.FreeTube \
 
 echo "Paso 5: Descargando Brave"
 
-sudo dnf install dnf-plugins-core
+sudo dnf install dnf-plugins-core -y
 
 sudo dnf config-manager addrepo --from-repofile=https://brave-browser-rpm-release.s3.brave.com/brave-browser.repo
 
