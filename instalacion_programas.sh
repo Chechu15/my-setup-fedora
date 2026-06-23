@@ -11,7 +11,7 @@ sudo dnf install mullvad-vpn mullvad-browser -y
 ### Instalando programas y desistalando programas que vienen por defecto en kde
 echo "Paso 2: Instalando Programas varios"
 
-sudo dnf install libreoffice-langpack-es vlc kleopatra keepassxc syncthing distrobox htop btop -y
+sudo dnf install libreoffice-langpack-es vlc kleopatra keepassxc syncthing distrobox htop btop fastfetch -y
 
 sudo dnf remove kmahjongg kmines kpat firefox -y
 
