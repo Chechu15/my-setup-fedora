@@ -125,6 +125,10 @@ echo "Paso 11: Limpieza de paquetes"
 
 sudo dnf autoremove -y
 
+## Mostrar menu del grub
+## sudo grub2-editenv - unset menu_auto_hide
+## sudo grub2-mkconfig -o /boot/grub2/grub.cfg
+
 
 echo "Final del Script!!!!!!"
 
